@@ -9,12 +9,7 @@ dotenv.config();
 app.use(express.json());
 
 // doing import aboutRoute.js
-const aboutRoute = require('./routes/aboutRoute.js')
 const productRoute = require('./routes/ProductRoute.js')
-
-
-// using about route
-app.use('/about', aboutRoute)
 
 // using product route
 app.use('/products', productRoute)

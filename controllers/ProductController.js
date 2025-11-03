@@ -10,6 +10,22 @@ class ProductController {
     }
   }
 
+  async store(req, res) {
+    try {
+      const { name, code, price, size } = req.body;
+      if (!name || !code || !price || !size) {
+        return res.status(400).json({ message: 'All fields (name, code, price, size) are required' });
+      }
+
+      const newProduct = await Product.create({ name, code, price, size });
+      res.status(201).json(newProduct);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+
 }
 
 module.exports = new ProductController();
