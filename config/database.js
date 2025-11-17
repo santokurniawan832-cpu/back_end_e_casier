@@ -5,12 +5,12 @@ const { Sequelize } = require('sequelize');
 
 // melakukan instansiasi class objek dari class Sequalize
 const sequelize = new Sequelize(
-    process.env.DB_NAME, // nama database
-    process.env.DB_USER, // nama user database
-    process.env.DB_PASS, // password database
+    process.env.DB_NAME, // pengisian nilai nama database
+    process.env.DB_USER, // pengisian nilai nama user database
+    process.env.DB_PASS, // pengisian nilai password database
    {
-    host:   process.env.DB_HOST,
-    dialect: process.env.DB_CONNECTION 
+    host:   process.env.DB_HOST, // pengisian nilai host database
+    dialect: process.env.DB_CONNECTION // pengisian nilai jenis koneksi database
 })
 
 // melakukan export  modul objek sequelize

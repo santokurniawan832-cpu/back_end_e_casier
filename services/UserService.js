@@ -1,12 +1,11 @@
 // memanggil file class User
 const User = require('../models/User');
 
-// memanggil fungsi bcrpty
+// memanggil fungsi bcrpty untuk enkripsi password
 const bcrypt = require("bcrypt");
 
-// memanggil fungsi jwt
+// memanggil fungsi jwt untuk mengurus json web token yang akan dikirim ketika register ataupun login
 const jwt = require("jsonwebtoken");
-const { type } = require('os');
 
 class UserService {
     // fungsi melakukan register
@@ -15,7 +14,7 @@ class UserService {
         // mengambil data user hanya 1 data user saja
         const userExist = await User.findOne({ where: { email } }) // destructuring  menjadi objek
 
-        // menge
+        // mengecek data user ada atau tidak 
         if (userExist) {
              throw new Error("Email sudah terdaftar");
         }
@@ -55,8 +54,8 @@ class UserService {
         };
     }
 
-    // fungsi melakukan login
-   static async login({ email, password }) {
+   
+   static async login({ email, password }) {  // email dan password sudah didesctructuring objek
         const user = await User.findOne({ where: { email } });
 
         if (!user) {
