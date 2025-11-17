@@ -12,20 +12,25 @@ app.use(express.json());
 // doing import ProductRoute.js
 const productRoute = require('./routes/ProductRoute.js')
 
-// doing import UserRoute
+// import route untuk register
 const registerRoute  = require("./routes/RegisterRoute.js")
 
-// doing import UserRoute
+// import route untuk login
 const loginRoute  = require("./routes/LoginRoute.js")
 
-// using products route
+// menggunakan route products
 app.use('/products', productRoute)
 
+// menggunakan route register
 app.use('/register', registerRoute)
 
+// menggunakan route untuk login
 app.use('/login', loginRoute)
 
+// melakukan syncron 
 sequelize.sync();
+
+// menampilkan didalam console
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

@@ -5,3 +5,6 @@ A simple Node.js project using **Express**, **MySQL2**, and the **MVC (Model-Vie
 ---
 
 ## 📁 Folder Structure
+# install sequalize orm
+# install bcrypt
+# install jwt
