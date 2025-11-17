@@ -3,7 +3,7 @@ const db = require('../config/db');
 
 class Product {
 
-   async all() {
+  async all() {
     const [rows] = await db.promise().query('SELECT * FROM products');
     return rows;
   }

@@ -13,4 +13,5 @@ router.post('/', (req, res) => ProductController.store(req, res));
 
 // route untuk seluruh product yang ada dalam stok gudang 
 router.get('/stocks', (req, res) => ProductController.productWithStatus(req, res))
+
 module.exports = router;
