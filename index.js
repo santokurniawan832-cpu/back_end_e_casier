@@ -1,12 +1,18 @@
 const express = require('express')
 const dotenv = require("dotenv");
 const sequelize = require("./config/database");
-
+const cors = require('cors')
 const app = express()
-const port = 8080;
 
 dotenv.config();
-// middleware
+
+// handle cors untuk perbedaan port back-end dengan front-end
+app.use(cors({
+  origin: process.env.FRONT_END_URL,  
+  credentials: true
+}));
+
+//  JSON parser
 app.use(express.json());
 
 // doing import ProductRoute.js
@@ -30,6 +36,7 @@ app.use('/login', loginRoute)
 // melakukan syncron 
 sequelize.sync();
 
+const port =  process.env.PORT;
 // menampilkan didalam console
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
