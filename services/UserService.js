@@ -1,6 +1,9 @@
 // memanggil file class User
 const User = require('../models/User');
 
+// memanggil class crypto
+const crypto = require("crypto");
+
 // memanggil file signature beserta alamatnya
 const createSignature = require("../utils/signature.js");   
 
@@ -9,6 +12,9 @@ const bcrypt = require("bcrypt");
 
 // memanggil fungsi jwt untuk mengurus json web token yang akan dikirim ketika register ataupun login
 const jwt = require("jsonwebtoken");
+
+//memanggil class TokenBlackList untuk menggunakan fungsi create dan exists
+const TokenBlackList = require("../utils/TokenBlackList.js")
 
 class UserService {
     // fungsi melakukan register
@@ -60,7 +66,6 @@ class UserService {
             }
         };
     }
-
    
    static async login({ email, password }) {  // email dan password sudah didesctructuring objek
         const user = await User.findOne({ where: { email } });
@@ -74,6 +79,7 @@ class UserService {
         if (!match) {
             throw new Error("Password salah");
         }
+        
         // membuat timer expired token nantinya
         const expiresIn = 60 * 60 * 24 * 7;
 
@@ -83,6 +89,10 @@ class UserService {
             process.env.JWT_SECRET,
             { expiresIn }
         );
+
+        // membuat signature agar dikirim melalui response
+        const signature = crypto.createHash("sha256").update(token).digest("hex");
+
         return { 
             user: {
                 id: user.id,
@@ -92,9 +102,23 @@ class UserService {
             token: {
                 type: "Bearer",
                 value: token, 
+                signature: signature,
                 expired_in: expiresIn
             } 
         };
+    }
+
+    static async logout(token) {
+        // mengecek token yang disimpan apakah ada atau tidak 
+        if (!token) {
+            throw new Error("Token tidak ditemukan di header");
+        }
+
+        // Masukkan token ke blacklist atau simpan status logout
+        TokenBlackList.create(token);
+
+        // mengembalikan response message
+        return { message: "Logout berhasil" };
     }
 }
 

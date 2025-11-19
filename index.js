@@ -24,6 +24,9 @@ const registerRoute  = require("./routes/RegisterRoute.js")
 // import route untuk login
 const loginRoute  = require("./routes/LoginRoute.js")
 
+// import route untuk login
+const logoutRoute  = require("./routes/LogoutRoute.js")
+
 // menggunakan route products
 app.use('/api/products', productRoute)
 
@@ -32,6 +35,9 @@ app.use('/api/register', registerRoute)
 
 // menggunakan route untuk login
 app.use('/api/login', loginRoute)
+
+// menggunakan route untuk logout
+app.use('/api/logout', logoutRoute)
 
 // melakukan syncron 
 sequelize.sync();
