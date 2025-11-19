@@ -1,6 +1,9 @@
 // memanggil file class User
 const User = require('../models/User');
 
+// memanggil file signature beserta alamatnya
+const createSignature = require("../utils/signature.js");   
+
 // memanggil fungsi bcrpty untuk enkripsi password
 const bcrypt = require("bcrypt");
 
@@ -29,6 +32,9 @@ class UserService {
             password: hashedPassword
         });
 
+        // membuat signature untuk token yang akan dikirim melalui response
+        const signature = createSignature({ id: user.id, email: user.email });
+
         // membuat expired token nantinya
         const expiresIn = 60 * 60 * 24 * 7; // 604800 detik
         
@@ -49,6 +55,7 @@ class UserService {
             token: {
                 type: "Bearer", 
                 value: token,
+                signature: signature,
                 expires_in: expiresIn
             }
         };
