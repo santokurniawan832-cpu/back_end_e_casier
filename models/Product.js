@@ -46,8 +46,6 @@ class Product {
 
     return rows;
   }
-
-
 }
 
 module.exports = new Product();

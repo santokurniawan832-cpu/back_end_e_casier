@@ -13,14 +13,6 @@ const db = mysql.createPool({
   queueLimit: 0
 });
 
-// db.connect((err) => {
-//   if (err) {
-//     console.error('❌ Database connection failed:', err.message);
-//   } else {
-//     console.log('✅ Database connected successfully.');
-//   }
-// });
-
 
 db.getConnection((err, connection) => {
   if (err) {
