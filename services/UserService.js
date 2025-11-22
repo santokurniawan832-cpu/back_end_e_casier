@@ -1,5 +1,5 @@
 // memanggil file class User
-const User = require('../models/User');
+const User = require("../repositories/User.js");
 
 // memanggil class crypto
 const crypto = require("crypto");
