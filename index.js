@@ -31,16 +31,16 @@ const logoutRoute  = require("./routes/LogoutRoute.js")
 const roleRoute = require("./routes/RoleRoute.js")
 
 // menggunakan route products
-// app.use('/api/products', productRoute)
+app.use('/api/products', productRoute)
 
 // menggunakan route register
-// app.use('/api/auth/register', registerRoute)
+app.use('/api/auth/register', registerRoute)
 
 // menggunakan route untuk login
-// app.use('/api/auth/login', loginRoute)
+app.use('/api/auth/login', loginRoute)
 
 // menggunakan route untuk logout
-// app.use('/api/auth/logout', logoutRoute)
+app.use('/api/auth/logout', logoutRoute)
 
 
 app.use('/api/roles', roleRoute)
