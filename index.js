@@ -45,6 +45,10 @@ app.use('/api/auth/logout', logoutRoute)
 
 app.use('/api/roles', roleRoute)
 
+// route untuk api.js
+
+// route untuk authentikasi
+
 // melakukan syncron 
 sequelize.sync();
 

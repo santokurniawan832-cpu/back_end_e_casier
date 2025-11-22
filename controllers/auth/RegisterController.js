@@ -1,5 +1,5 @@
 // memanggil UserServices untuk  menggunakan fungsi register dan login
-const UserService = require('../services/UserService')
+const UserService = require('../../services/UserService')
 const jwt = require("jsonwebtoken");
 class RegisterController {
     // fungsi untuk melakukan register user

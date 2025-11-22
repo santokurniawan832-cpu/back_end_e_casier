@@ -1,5 +1,5 @@
 // memanggil class UserServices untuk  menggunakan fungsi register dan login
-const UserService = require('../services/UserService')
+const UserService = require('../../services/UserService')
 
 class LogoutController {
     // fungsi untuk melakukan login user

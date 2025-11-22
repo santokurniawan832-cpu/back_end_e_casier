@@ -7,9 +7,9 @@ const express = require('express');
 // create Router Object
 const router = express.Router();
 
-const LogoutController = require("../controllers/LogoutController.js");
+const LogoutController = require("../controllers/auth/LogoutController.js");
 
 // route untuk register
-router.post('/', AuthMiddleware.authenticate, (req, res) => LogoutController.authLogout(req, res));
+router.post('/', (req, res) => LogoutController.authLogout(req, res));
 
 module.exports = router;
