@@ -6,9 +6,23 @@ const app = express()
 
 dotenv.config();
 
-// handle cors untuk perbedaan port back-end dengan front-end
+// setting port local and publish
+const allowedOrigins = [
+  process.env.FRONT_END_URL_LOCAL,
+  process.env.FRONT_END_URL_PUBLISH,
+];
+
+// handle cors untuk sharing resource port back-end dengan front-end
 app.use(cors({
-  origin: process.env.FRONT_END_URL,  
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
 

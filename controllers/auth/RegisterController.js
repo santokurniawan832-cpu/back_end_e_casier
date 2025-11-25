@@ -3,20 +3,27 @@ const UserService = require('../../services/UserService')
 const jwt = require("jsonwebtoken");
 class RegisterController {
     // fungsi untuk melakukan register user
-    static  async storeRegister(req, res){
+    static  async storeRegister(request, response){
         try {
-            const { name, email, password } = req.body;
-            const user = await UserService.register({ name, email, password })
+            const { name, email, password } = request.body;
+            const result = await UserService.register({ name, email, password })
 
-            // mengirim response json
-            res.status(201).json({
+            // mengecek jika ada response error
+            if (result.error) {
+                return response.status(409).json({
+                    status: 409,
+                    message: result.message
+                });
+            }
+            // mengirim response json berhasil
+            response.status(201).json({
                 message: 'User Berhasil registrasi',
-                data: user,
+                data: result.user,
             })
         } catch (error) {
-            res.status(400).json({
-                message: error.message
-            })
+            return response.status(500).json({
+                message: error.message || "Internal server error"
+            });
         }
     }
 }

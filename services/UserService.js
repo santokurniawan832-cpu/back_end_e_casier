@@ -25,7 +25,10 @@ class UserService {
 
         // mengecek data user ada atau tidak 
         if (userExist) {
-             throw new Error("Email sudah terdaftar");
+            return {
+                error: true,
+                message: "Email sudah terdaftar"
+            };
         }
 
         // melakukan enkripsi password
@@ -111,6 +114,7 @@ class UserService {
     static async logout(token) {
         // mengecek token yang disimpan apakah ada atau tidak 
         if (!token) {
+            
             throw new Error("Token tidak ditemukan di header");
         }
 
