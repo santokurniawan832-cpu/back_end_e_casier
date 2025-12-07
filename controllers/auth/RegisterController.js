@@ -18,7 +18,10 @@ class RegisterController {
             // mengirim response json berhasil
             response.status(201).json({
                 message: 'User Berhasil registrasi',
-                data: result.user,
+                data: {
+                    user: result.user,
+                    token: result.token
+                }
             })
         } catch (error) {
             return response.status(500).json({
