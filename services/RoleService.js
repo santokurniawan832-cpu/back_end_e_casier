@@ -1,5 +1,4 @@
 // memanggil class Model Role
-// const Role = require("../models/role.js");
 const { Role } = require("../models");
 class RoleService {
     // fungsi melakukan register

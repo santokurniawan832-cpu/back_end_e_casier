@@ -19,3 +19,8 @@ npm install --save-dev sequelize-cli
 ```
 npx sequelize-cli init
 ```
+
+# membuat file class migration table
+```
+npx sequelize-cli migration:generate --name create-users-table
+```

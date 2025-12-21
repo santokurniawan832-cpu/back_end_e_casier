@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // mendefinisikan nama relasi table users ke table roles
       models.Role.hasMany(models.User, { foreignKey: 'role_id' });
+
+      // mendefinisikan user memiliki 1 outlet toko
+      models.User.hasOne(models.Outlet, {foreignKey: 'outlet_id'})
       
       
       // mendefinisikan nama relasi table users ke table roles
