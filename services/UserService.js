@@ -73,14 +73,31 @@ class UserService {
    static async login({ email, password }) {  // email dan password sudah didesctructuring objek
         const user = await User.findOne({ where: { email } });
 
+        // pengecekan bila email user tidak ada atau tidak sesuai
         if (!user) {
-            throw new Error("Email tidak ditemukan");
+            
+            // melakukan custome objek yang akan dikirim bila error tidak ada email
+             throw {
+                status: 422,
+                message: 'Validasi gagal dari services',
+                errors: {
+                    email: 'Email tidak valid'
+                }
+            }
         }
 
         // membandingkan password yang dienkripsi dengan inputan password 
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
-            throw new Error("Password salah");
+
+            // melakukan custome objek yang akan dikirim bila error password tidak valid
+            throw {
+                status: 401,
+                message: 'Validasi password gagal dari services',
+                errors: {
+                    password: 'Password tidak sesuai'
+                }
+            }
         }
         
         // membuat timer expired token nantinya

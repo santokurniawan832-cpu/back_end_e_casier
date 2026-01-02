@@ -7,6 +7,6 @@ const router = express.Router();
 const LoginController = require("../controllers/auth/LoginController");
 
 // route untuk register
-router.post('/', (req, res) => LoginController.storeLogin(req, res));
+router.post('/', LoginController.storeLogin);
 
 module.exports = router;

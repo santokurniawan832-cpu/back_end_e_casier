@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const sequelize = require("./config/database");
 const cors = require('cors')
 const app = express()
+const errorHandler = require("./middlewares/errorHandler")
 
 dotenv.config();
 
@@ -59,6 +60,8 @@ app.use('/api/auth/logout', logoutRoute)
 
 app.use('/api/roles', roleRoute)
 
+
+app.use(errorHandler)
 // route untuk api.js
 
 // route untuk authentikasi
@@ -71,3 +74,5 @@ const port =  process.env.PORT;
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
+
