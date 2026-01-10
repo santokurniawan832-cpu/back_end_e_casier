@@ -78,7 +78,7 @@ class UserService {
             
             // melakukan custome objek yang akan dikirim bila error tidak ada email
              throw {
-                status: 422,
+                status: 401,
                 message: 'Validasi gagal dari services',
                 errors: {
                     email: 'Email tidak valid'
@@ -93,9 +93,9 @@ class UserService {
             // melakukan custome objek yang akan dikirim bila error password tidak valid
             throw {
                 status: 401,
-                message: 'Validasi password gagal dari services',
+                message: 'Validasi password gagal',
                 errors: {
-                    password: 'Password tidak sesuai'
+                    password: 'Password tidak valid'
                 }
             }
         }
