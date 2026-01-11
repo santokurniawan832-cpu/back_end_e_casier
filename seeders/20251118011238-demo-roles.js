@@ -10,6 +10,21 @@ module.exports = {
         updated_at: new Date(),
       },
       {
+        name: 'teacher',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        name: 'student',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        name: 'parent',
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
         name: 'guest',
         created_at: new Date(),
         updated_at: new Date(),

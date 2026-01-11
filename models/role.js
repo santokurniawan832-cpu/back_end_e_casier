@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'users'
       });
 
+      Role.hasMany(models.AdditionRole, {
+        foreignKey: 'role_id',
+        as: 'additionRoles'
+      })
+
     }
   }
   Role.init({

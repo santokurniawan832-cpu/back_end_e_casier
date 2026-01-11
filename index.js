@@ -45,6 +45,9 @@ const logoutRoute  = require("./routes/LogoutRoute.js")
 // import route untuk role
 const roleRoute = require("./routes/RoleRoute.js")
 
+// import route untuk additionRole
+const additionRoleRoute = require("./routes/AdditionRoleRoute.js")
+
 // menggunakan route products
 app.use('/api/products', productRoute)
 
@@ -57,9 +60,11 @@ app.use('/api/auth/login', loginRoute)
 // menggunakan route untuk logout
 app.use('/api/auth/logout', logoutRoute)
 
-
+// menggunakan route untuk roles
 app.use('/api/roles', roleRoute)
 
+// menggunakan route untuk additionRole
+app.use('/api/addition-role', additionRoleRoute)
 
 app.use(errorHandler)
 // route untuk api.js
