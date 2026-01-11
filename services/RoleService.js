@@ -1,5 +1,5 @@
 // memanggil class Model Role
-const { Role } = require("../models");
+const { Role, AdditionRole } = require("../models");
 class RoleService {
     // fungsi melakukan register
     static async store({ name }) { 
@@ -20,6 +20,20 @@ class RoleService {
                 name: role.name,
             },
         };
+    }
+
+    static async all() {
+        // mengambil seluruh data beserta data relasi 
+         const listAdditionRole = await Role.findAll({
+            attributes: ['id', 'name'],
+            include: { model: AdditionRole, as: 'additionRoles'},
+            required: true
+        }) 
+
+        // mengembalikan data berbetuk array
+        return {
+            roles: listAdditionRole
+        }
     }
 }
 
