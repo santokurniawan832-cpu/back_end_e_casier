@@ -35,6 +35,23 @@ class RoleService {
             roles: listAdditionRole
         }
     }
+
+    static async findBy(roleId) {
+        if(!roleId) {
+            throw Error("data role id tidak ditemukan.." + roleId)
+        }
+        // mengambil data role by id melalui ORM
+        const role = await Role.findByPk(roleId)
+
+        console.log(roleId)
+        // mengecek data role
+        if(!role) {
+            throw Error("role tidak ditemukan..")
+        }
+        return {
+            role: role
+        }
+    }
 }
 
 module.exports = RoleService;

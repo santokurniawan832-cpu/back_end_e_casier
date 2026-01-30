@@ -14,4 +14,7 @@ router.post( "/", storeValidation, validate, RoleController.storeData);
 // route untuk mengambil seluruh data jabatan 
 router.get('/', RoleController.index)
 
+// route untuk mengambil data role berdasarkan role id
+router.get('/:id', RoleController.getRoleById)
+
 module.exports = router;

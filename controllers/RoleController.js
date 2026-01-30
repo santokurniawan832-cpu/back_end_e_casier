@@ -32,6 +32,27 @@ class RoleController {
             response.status(500).json(error.message)
         }
     }
+
+    static async getRoleById(request, response) {
+        try {
+            // mengambil data request untuk mengambil parameter
+            const { id } = request.params
+
+            // menemukan data role berdasarkan roleId
+            const role = await RoleService.findBy(id)
+            
+            // mengembalikan data role
+            return response.status(200).json({
+                message: true,
+                data: role,
+            })
+        } catch(error){
+            response.status(404).json({
+                success: false,
+                message: error.message,
+            })
+        }
+    }
 }
 
 module.exports = RoleController;
