@@ -1,5 +1,5 @@
-const express = require('express')
 const dotenv = require("dotenv");
+const express = require('express')
 const sequelize = require("./config/database");
 const cors = require('cors')
 const app = express()

@@ -16,13 +16,17 @@ const jwt = require("jsonwebtoken");
 //memanggil class TokenBlackList untuk menggunakan fungsi create dan exists
 const TokenBlackList = require("../utils/TokenBlackList.js")
 
+require('dotenv').config();
+
 class UserService {
     // fungsi melakukan register
-    static async register({ name, email, password }) { // name, email, password destructuring parameter
+    static async register({ name, email, password, roleId }) { // name, email, password destructuring parameter
         
         // mengambil data user hanya 1 data user saja
         const userExist = await User.findOne({ where: { email } }) // destructuring  menjadi objek
+        if(!roleId) {
 
+        }
         // mengecek data user ada atau tidak 
         if (userExist) {
             return {
@@ -50,10 +54,11 @@ class UserService {
         // membuat token 
         const token = jwt.sign(
             {id: user.id, email: user.email},
-            process.env.JWT_SECRET,
+          "testing123",
             { expiresIn }
         )
 
+        console.log(token)
         // mengembalikan nilai
         return {
              user: {
@@ -79,9 +84,9 @@ class UserService {
             // melakukan custome objek yang akan dikirim bila error tidak ada email
              throw {
                 status: 401,
-                message: 'Validasi gagal dari services',
+                message: 'email fail',
                 errors: {
-                    email: 'Email tidak valid'
+                    email: 'Email tidak ditemukan.'
                 }
             }
         }
@@ -106,9 +111,11 @@ class UserService {
         // generate token login
         const token = jwt.sign(
             { id: user.id, email: user.email },
-            process.env.JWT_SECRET,
+           "testing123",
             { expiresIn }
         );
+
+        console.log(token)
 
         // membuat signature agar dikirim melalui response
         const signature = crypto.createHash("sha256").update(token).digest("hex");

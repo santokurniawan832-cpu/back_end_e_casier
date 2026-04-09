@@ -26,7 +26,7 @@ class RoleController {
             // mengembalikan data berbentuk response
             response.status(200).json({
                 message: 'get roles successfully',
-                data: listRole
+                data: listRole.roles
             })
         } catch (error) {
             response.status(500).json(error.message)
