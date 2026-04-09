@@ -65,17 +65,17 @@ class AdditionRoleService {
         return { additionrole: listAdditionRole }
     }
 
-    // fungsi melakukan pengambilan 1 data berdasarkan id
-    static async findBy(additionRole_id) {
-         // mengambil data nama aditionRole berdasarkan id
-        const additionRoleExist = await AdditionRole.findByPk(additionRole_id, {
-            attributes: ['id', 'name', 'role_id'],
+    // fungsi melakukan pengambilan seluruh addition_role berdasarkan role_id
+    static async findBy(role_id) {
+         // mengambil data role dan seluruh relasi aditionRole berdasarkan role_id
+         const additionRoleExist = await Role.findByPk(role_id, {
+            attributes: ['id', 'name'],
             include: {
-                model: Role,
-                as: 'role',
+                model: AdditionRole,
+                as: 'additionRoles',
                 attributes: ['id', 'name']
             }
-        }); 
+         })
 
         // mengecek jika tidak ada additionRole
         if(!additionRoleExist) {
@@ -83,7 +83,24 @@ class AdditionRoleService {
         }
 
         // mengembalikan data berbentuk objek
-        return { additionRole: additionRoleExist }
+        return { role: additionRoleExist }
+    }
+
+    // fungsi untuk mengambil hanya 1 addition role
+    static async getOneBy(additionRole_id) {
+            // mengambil data addition role melalui model
+             const additionRoleExist = await AdditionRole.findByPk(additionRole_id, {
+                attributes: ['id', 'name', 'role_id'],
+            })
+            // const additionRoleExist = await AdditionRole.findOne({ where: { id: additionRole_id }, })
+
+            // mengecek jika tidak ada additionRole yang ditemukan
+            if(!additionRoleExist) {
+                throw new Error("NOT_FOUND");
+            }
+
+            // mengembalikan data addition role
+            return additionRoleExist 
     }
 
     // fungsi melakukan penghapusan data 

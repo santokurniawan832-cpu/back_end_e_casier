@@ -3,12 +3,8 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // mendefinisikan nama relasi table users ke table roles
-      models.Role.hasMany(models.User, { foreignKey: 'role_id' });
-
       // mendefinisikan user memiliki 1 outlet toko
       models.User.hasOne(models.Outlet, {foreignKey: 'outlet_id'})
-      
       
       // mendefinisikan nama relasi table users ke table roles
       models.User.belongsTo(models.Role, { foreignKey: 'role_id' });

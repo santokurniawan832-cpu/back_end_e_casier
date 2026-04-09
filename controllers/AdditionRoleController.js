@@ -23,12 +23,37 @@ class AdditionRoleController {
             const { id } = request.params
             
             const additionRole = await AdditionRoleService.findBy(id);
+            
             response.json({
-                message: "created role successfully",
+                message: "get addition-role by role_id successfully",
                 data: additionRole
             });
         } catch (error) {
             // cek jika id tidak ditemukan berdasarkan pesan error dari AdditionRoleService 
+            if(error.message == "NOT_FOUND") {
+                response.status(404).json({
+                    error: "Jabatan tambahan tidak ditemukan"
+                });
+            }
+            response.status(500).json({ error: error.message });
+        }
+    }
+
+    static async getAdditionRole(request, response) {
+        try {
+            // mengambil data id addition role
+            const { id } = request.params
+
+            // menggunakan additionRoleService agar mengambil ke model
+            const result = await AdditionRoleService.getOneBy(id)
+
+            // mengembalikan response ke FE
+            response.json({
+                message: "get addition role successfully",
+                data: result
+            });
+        } catch (error) {
+             // cek jika id tidak ditemukan berdasarkan pesan error dari AdditionRoleService 
             if(error.message == "NOT_FOUND") {
                 response.status(404).json({
                     error: "Jabatan tambahan tidak ditemukan"
@@ -64,7 +89,7 @@ class AdditionRoleController {
             // mengembalikan response beserta data berbentuk objek 
             response.status(200).json({
                 message: "updated data successfully",
-                data: newAdditionRole
+                data: newAdditionRole.additionRole
             });
 
         } catch (error) {

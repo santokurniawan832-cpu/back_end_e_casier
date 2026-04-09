@@ -46,10 +46,24 @@ class RoleService {
         console.log(roleId)
         // mengecek data role
         if(!role) {
-            throw Error("role tidak ditemukan..")
+            throw Error("role tidak ditemukand..")
         }
         return {
             role: role
+        }
+    }
+
+    static async findAdditionRoleBy(roleId) {
+        try {
+            // mengecek jika tidak ada role id yang dikirim
+            if(!roleId) {
+                throw Error("data role id tidak ditemukan.." + roleId)
+            }   
+
+            // mengambil seluruh data additionRole berasarkan roleId
+            const listAddition = AdditionRole.findAll({ where: {  role_id: roleId }  })
+        } catch (error) {
+            console.log('error', error)
         }
     }
 }

@@ -25,22 +25,22 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
         references: {
-          model: 'roles',   
+          model: 'Roles',   
           key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
       },
-      invitation_id: {
-        type: Sequelize.INTEGER,
-        allowNull: true, 
-        references: {
-          model: 'invitations',   
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
-      },
+      // invitation_id: {
+      //   type: Sequelize.INTEGER,
+      //   allowNull: true, 
+      //   references: {
+      //     model: 'invitations',   
+      //     key: 'id'
+      //   },
+      //   onUpdate: 'CASCADE',
+      //   onDelete: 'SET NULL'
+      // },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE

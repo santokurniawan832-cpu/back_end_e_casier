@@ -24,3 +24,8 @@ npx sequelize-cli init
 ```
 npx sequelize-cli migration:generate --name create-users-table
 ```
+
+# melakukan seeder file ke table 
+```
+npx sequelize-cli db:seed:all
+```

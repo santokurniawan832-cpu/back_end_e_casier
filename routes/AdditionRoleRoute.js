@@ -15,10 +15,13 @@ router.get('/', AdditionRoleController.index)
 router.post( "/", storeValidation, validate, AdditionRoleController.storeData);
 
 // route untuk melakukan update jabatan tambahan
-router.put("/:id", storeValidation, validate, AdditionRoleController.updateData)
+router.put("/:id/update", storeValidation, validate, AdditionRoleController.updateData)
 
-// route untuk mengambil data addition role berdasarkan id
-router.get('/:id', AdditionRoleController.getAdditionRoleBy)
+// route untuk mengambil seluruh data addition_role berdasarkan role_id
+router.get('/:id/list', AdditionRoleController.getAdditionRoleBy)
+
+// route untuk mengambil 1 data addition role berdasarkan additionrole_id
+router.get('/:id/show', AdditionRoleController.getAdditionRole)
 
 // route untuk menghapus data addition role 
 router.delete('/:id', AdditionRoleController.delete)
