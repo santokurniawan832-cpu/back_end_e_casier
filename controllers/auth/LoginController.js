@@ -6,6 +6,7 @@ class LoginController {
    static async storeLogin(req, res, next) {
         try {
             const user = await UserService.login(req.body);
+            console.log('data', user)
             res.json({
                 message: "Login berhasil",
                 data: user
